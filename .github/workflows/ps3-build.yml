@@ -1,0 +1,15 @@
+name: ps3-build
+on:
+  push:
+    branches: [ps3]
+  workflow_dispatch:
+jobs:
+  libs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bullet
+        run: docker run --rm -v "$PWD:/build" ghcr.io/altps3/ps3dev:latest sh /build/ps3/ci-build.sh bullet
+      - name: ENet
+        continue-on-error: true
+        run: docker run --rm -v "$PWD:/build" ghcr.io/altps3/ps3dev:latest sh /build/ps3/ci-build.sh enet
