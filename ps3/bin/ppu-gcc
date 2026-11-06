@@ -1,0 +1,3 @@
+#!/bin/sh
+D="$(cd "$(dirname "$0")" && pwd)"
+exec "${PS3DEV:-/usr/local/ps3dev}/ppu/bin/powerpc64-ps3-elf-gcc" -mcpu=cell -fsigned-char -I"$D/../shim" "$@"
